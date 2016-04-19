@@ -13,7 +13,7 @@ Simple Console is nice clean command-line interface for the web.
 
 * Command history acessible with up/down arrow keys, saved to `localStorage`
 
-* Rich output
+* Easy rich HTML output
 
 * Includes `aria` attributes
 
@@ -60,9 +60,17 @@ Sets up a [`window.onerror`][] event listener and logs any uncaught error messag
 
 #### `console.log(text)`
 
-Logs the given text to the console and returns an `HTMLDivElement` for further manipulation (such as adding classes).
+Logs the given text to the console and returns an `HTMLDivElement` for further manipulation (such as the addition of classes).
 
-#### `console.error(text)`
+#### `console.log(element)`
+
+Logs the given element to the console and returns an `HTMLDivElement`.
+
+#### `console.logHTML(html)`
+
+Logs the given HTML to the console and returns an `HTMLDivElement`.
+
+#### `console.error(message)`
 
 Logs the given error message to the console and returns an `HTMLDivElement`.
 
@@ -74,11 +82,7 @@ Clears the console.
 
 * API for adding buttons beside the input
 
-* Log elements directly
-
 * Allow seperating command history storage with a console ID
-
-* Optional autofocus
 
 * Multiline input
 

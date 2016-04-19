@@ -5,9 +5,10 @@ var con = new SimpleConsole({
 });
 document.body.appendChild(con.element);
 
-con.log("").innerHTML =
+con.logHTML(
 	"<h1>Welcome to <a href='https://github.com/1j01/simple-console'>Simple Console!</a></h1>" +
-	"<p>Try entering <code>5 + 5</code> below. Or some faces.</p>";
+	"<p>Try entering <code>5 + 5</code> below. Or some faces.</p>"
+);
 
 function handle_command(command){
 	// Conversational trivialities
@@ -19,7 +20,7 @@ function handle_command(command){
 		span.style.cursor = "vertical-text";
 		span.style.fontSize = "1.3em";
 		span.innerText = face.replace(">", "〉").replace("<", "〈");
-		con.log("").appendChild(span);
+		con.log(span);
 	};
 	if(command.match(/^((Well|So|Um|Uh),? )?(Hi|Hello|Hey|Greetings|Hola)/i)){
 		con.log((command.match(/^[A-Z]/) ? "Hello" : "hello") + (command.match(/\.|!/) ? "." : ""));

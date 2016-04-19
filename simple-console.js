@@ -41,12 +41,16 @@ var SimpleConsole = function(options){
 		output.innerHTML = "";
 	};
 
-	var log = function(text){
+	var log = function(content){
 		var was_scrolled_to_bottom = output.is_scrolled_to_bottom();
 
 		var entry = document.createElement("div");
 		entry.className = "entry";
-		entry.innerText = entry.textContent = text;
+		if(content instanceof Element){
+			entry.appendChild(content);
+		}else{
+			entry.innerText = entry.textContent = content;
+		}
 		output.appendChild(entry);
 
 		setTimeout(function(){
@@ -55,6 +59,12 @@ var SimpleConsole = function(options){
 			}
 		});
 
+		return entry;
+	};
+
+	var logHTML = function(html){
+		var entry = log("");
+		entry.innerHTML = html;
 		return entry;
 	};
 
@@ -137,6 +147,7 @@ var SimpleConsole = function(options){
 	};
 
 	this.log = log;
+	this.logHTML = logHTML;
 	this.error = error;
 	this.clear = clear;
 
