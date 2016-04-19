@@ -2,10 +2,9 @@
 # Simple Console
 
 Simple Console is nice clean command-line interface for the web.
+[Try it out here.](http://1j01.github.io/simple-console/)
 
 ![](screenshot.png)
-
-[Try it out here.](http://1j01.github.io/simple-console/)
 
 ## Features
 
@@ -43,11 +42,13 @@ Creates a console instance.
 
 `options.handleCommand(input)` is required.
 You can handle the input however you want.
-It's recommended that you 
+It's recommended that you catch errors and log them with `console.error`.
 
 `options.placeholder` is strongly recommended especially with the default styling as there is very little other indication of the input (when it's not focused).
 
 `options.autofocus` should be used within an application that is primarily a console.
+
+`options.storageID` should be used to separate the command history of different consoles.
 
 #### `console.element`
 
@@ -80,15 +81,19 @@ Clears the console.
 
 ### TODO
 
-* API for adding buttons beside the input
+* Dedupe history entries, at least for enter up enter
 
-* Allow seperating command history storage with a console ID
+* API for adding buttons beside the input
 
 * Multiline input
 
 * Autocomplete API
 
 * Web Component
+
+* Clean up code
+
+* License
 
 * Publish to npm and/or whatnot
 

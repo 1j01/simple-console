@@ -8,6 +8,7 @@ var SimpleConsole = function(options){
 	var handle_command = options.handleCommand;
 	var placeholder = options.placeholder || "";
 	var autofocus = options.autofocus;
+	var storage_id = options.storageID || "simple-console";
 
 	var add_chevron = function(element){
 		var icon = document.createElement("span");
@@ -84,17 +85,18 @@ var SimpleConsole = function(options){
 
 	var command_history = [];
 	var cmdi = command_history.length;
+	var command_history_key = storage_id + " command history";
 
 	var load_command_history = function(){
 		try{
-			command_history = JSON.parse(localStorage.command_history);
+			command_history = JSON.parse(localStorage[command_history_key]);
 			cmdi = command_history.length;
 		}catch(e){}
 	};
 
 	var save_command_history = function(){
 		try{
-			localStorage.command_history = JSON.stringify(command_history);
+			localStorage[command_history_key] = JSON.stringify(command_history);
 		}catch(e){}
 	};
 
