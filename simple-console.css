@@ -13,16 +13,16 @@ body {
 	flex-direction: column;
 }
 
-#simple-console-output,
-#simple-console-input-wrapper {
+.simple-console-output,
+.simple-console-input-wrapper {
 	flex: 0;
 	flex-basis: auto;
 }
-#simple-console-input-wrapper {
+.simple-console-input-wrapper {
 	display: flex;
 	flex-shrink: 0;
 }
-#simple-console-input {
+.simple-console-input {
 	flex: 1;
 	font-size: inherit;
 	color: inherit;
@@ -30,21 +30,21 @@ body {
 	border: 0;
 	box-shadow: 0 1px 0 transparent;
 }
-#simple-console-input:focus {
+.simple-console-input:focus {
 	outline: 0;
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
-#simple-console-output {
+.simple-console-output {
 	overflow: auto;
 }
-#simple-console-input-wrapper,
+.simple-console-input-wrapper,
 .entry {
 	padding: 0.25em 0.5em;
 	padding-left: 1em; /* = A */
 	position: relative;
 }
-#simple-console-input-wrapper > .octicon:first-child,
+.simple-console-input-wrapper > .octicon:first-child,
 .entry.input > .octicon:first-child {
 	position: absolute;
 	left: 0;
@@ -63,6 +63,10 @@ body {
 	background: #FFF5F5;
 }
 
+.light {
+	background: white;
+	color: black;
+}
 .dark {
 	background: black;
 	color: white;
@@ -71,7 +75,7 @@ body {
 	color: #A00;
 	background: rgba(255, 0, 0, 0.15);
 }
-.dark #simple-console-input:focus {
+.dark .simple-console-input:focus {
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
