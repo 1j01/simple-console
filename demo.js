@@ -5,6 +5,10 @@ var con = new SimpleConsole({
 });
 document.body.appendChild(con.element);
 
+con.log("").innerHTML =
+	"<h1>Welcome to <a href='https://github.com/1j01/simple-console'>Simple Console!</a></h1>" +
+	"<p>Try entering <code>5 + 5</code> below. Or some faces.</p>";
+
 function handle_command(command){
 	// Conversational trivialities
 	var log_emoji = function(face, rotate_direction){

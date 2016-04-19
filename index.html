@@ -2,11 +2,33 @@
 <head>
 	<link rel="stylesheet" href="simple-console.css">
 	<link rel="stylesheet" href="lib/octicons/octicons.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
 	<title>Simple Console</title>
 </head>
 <body>
+	<style>
+		h1, p {
+			margin: 0.5rem 0;
+		}
+		h1 {
+			font-family: "Open Sans", sans-serif;
+			font-weight: normal;
+		}
+		a {
+			color: #4078c0;
+		}
+		a:not(:hover) {
+			text-decoration: none;
+		}
+		code {
+			font-family: inherit;
+			padding: 0.1em 0.2em;
+			border: 1px solid rgba(128, 128, 128, 0.5);
+			border-radius: 0.1em;
+		}
+	</style>
 	<script src="simple-console.js"></script>
 	<script src="demo.js"></script>
 </body>

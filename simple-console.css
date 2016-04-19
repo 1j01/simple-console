@@ -40,8 +40,8 @@ body {
 }
 .simple-console-input-wrapper,
 .entry {
-	padding: 0.25em 0.5em;
-	padding-left: 1em; /* = A */
+	padding: 0.25rem 0.5rem;
+	padding-left: 1rem; /* = A */
 	position: relative;
 }
 .simple-console-input-wrapper > .octicon:first-child,
@@ -50,7 +50,7 @@ body {
 	left: 0;
 	top: 0;
 	bottom: 0;
-	width: 1em; /* = A */
+	width: 1rem; /* = A */
 	display: flex;
 	align-items: center;
 	justify-content: center;

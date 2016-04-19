@@ -82,9 +82,9 @@ Clears the console.
 
 * Multiline input
 
-* Web Component
+* Autocomplete API
 
-* Improve the demo, maybe link back to the repo
+* Web Component
 
 * Publish to npm and/or whatnot
 
