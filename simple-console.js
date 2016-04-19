@@ -23,14 +23,6 @@ var log = function(text){
 	return entry;
 };
 
-var handle_command = function(command){
-	if(window.handle_command){
-		window.handle_command(command);
-	}else{
-		throw new Error("window.handle_command is not defined");
-	}
-};
-
 output.is_scrolled_to_bottom = function(){
 	return output.scrollTop + output.clientHeight >= output.scrollHeight
 };
