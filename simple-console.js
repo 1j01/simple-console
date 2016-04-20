@@ -1,7 +1,7 @@
 
-var SimpleConsole = function(options){
+var SimpleConsole = function(options) {
 
-	if(!options.handleCommand){
+	if (!options.handleCommand) {
 		throw new Error("options.handleCommand is required");
 	}
 
@@ -10,7 +10,7 @@ var SimpleConsole = function(options){
 	var autofocus = options.autofocus;
 	var storage_id = options.storageID || "simple-console";
 
-	var add_chevron = function(element){
+	var add_chevron = function(element) {
 		var icon = document.createElement("span");
 		icon.className = "simple-console-chevron";
 		icon.innerHTML =
@@ -42,24 +42,24 @@ var SimpleConsole = function(options){
 	console_element.appendChild(input_wrapper);
 	input_wrapper.appendChild(input);
 
-	var clear = function(){
+	var clear = function() {
 		output.innerHTML = "";
 	};
 
-	var log = function(content){
+	var log = function(content) {
 		var was_scrolled_to_bottom = output.is_scrolled_to_bottom();
 
 		var entry = document.createElement("div");
 		entry.className = "entry";
-		if(content instanceof Element){
+		if (content instanceof Element) {
 			entry.appendChild(content);
-		}else{
+		} else {
 			entry.innerText = entry.textContent = content;
 		}
 		output.appendChild(entry);
 
-		setTimeout(function(){
-			if(was_scrolled_to_bottom){
+		setTimeout(function() {
+			if (was_scrolled_to_bottom) {
 				output.scroll_to_bottom();
 			}
 		});
@@ -67,23 +67,23 @@ var SimpleConsole = function(options){
 		return entry;
 	};
 
-	var logHTML = function(html){
+	var logHTML = function(html) {
 		var entry = log("");
 		entry.innerHTML = html;
 		return entry;
 	};
 
-	var error = function(error_message){
+	var error = function(error_message) {
 		var error_entry = log(error_message);
 		error_entry.classList.add("error");
 		return error_entry;
 	};
 
-	output.is_scrolled_to_bottom = function(){
+	output.is_scrolled_to_bottom = function() {
 		return output.scrollTop + output.clientHeight >= output.scrollHeight
 	};
 
-	output.scroll_to_bottom = function(){
+	output.scroll_to_bottom = function() {
 		output.scrollTop = output.scrollHeight;
 	};
 
@@ -91,29 +91,31 @@ var SimpleConsole = function(options){
 	var cmdi = command_history.length;
 	var command_history_key = storage_id + " command history";
 
-	var load_command_history = function(){
-		try{
+	var load_command_history = function() {
+		try {
 			command_history = JSON.parse(localStorage[command_history_key]);
 			cmdi = command_history.length;
-		}catch(e){}
+		} catch (e) {}
 	};
 
-	var save_command_history = function(){
-		try{
+	var save_command_history = function() {
+		try {
 			localStorage[command_history_key] = JSON.stringify(command_history);
-		}catch(e){}
+		} catch (e) {}
 	};
 
 	load_command_history();
 
-	input.addEventListener("keydown", function(e){
-		if(e.keyCode === 13){ // Enter
+	input.addEventListener("keydown", function(e) {
+		if (e.keyCode === 13) { // Enter
 
 			var command = input.value;
-			if(command === ""){ return; }
+			if (command === "") {
+				return;
+			}
 			input.value = "";
 
-			if(command_history[command_history.length - 1] !== command){
+			if (command_history[command_history.length - 1] !== command) {
 				command_history.push(command);
 			}
 			cmdi = command_history.length;
@@ -127,16 +129,16 @@ var SimpleConsole = function(options){
 
 			handle_command(command);
 
-		}else if(e.keyCode === 38){ // Up
+		} else if (e.keyCode === 38) { // Up
 			input.value = (--cmdi < 0) ? (cmdi = -1, "") : command_history[cmdi];
 			input.setSelectionRange(input.value.length, input.value.length);
 			e.preventDefault();
-		}else if(e.keyCode === 40){ // Down
+		} else if (e.keyCode === 40) { // Down
 			input.value = (++cmdi >= command_history.length) ? (cmdi = command_history.length, "") : command_history[cmdi];
 			input.setSelectionRange(input.value.length, input.value.length);
 			e.preventDefault();
-		}else if(e.keyCode === 46 && e.shiftKey){ // Shift+Delete
-			if(input.value === command_history[cmdi]){
+		} else if (e.keyCode === 46 && e.shiftKey) { // Shift+Delete
+			if (input.value === command_history[cmdi]) {
 				command_history.splice(cmdi, 1);
 				cmdi = Math.max(0, cmdi - 1)
 				input.value = command_history[cmdi] || "";
@@ -148,7 +150,7 @@ var SimpleConsole = function(options){
 
 	this.element = console_element;
 
-	this.handleUncaughtErrors = function(){
+	this.handleUncaughtErrors = function() {
 		window.onerror = error;
 	};
 

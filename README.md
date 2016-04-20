@@ -97,8 +97,6 @@ Clears the console.
 
 * Web Component
 
-* Clean up code
-
 * Publish to npm and/or whatnot
 
 
