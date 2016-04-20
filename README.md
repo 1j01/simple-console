@@ -73,6 +73,12 @@ It's recommended that you catch errors and log them with `console.error`.
 You must use this to add the console to the page,
 e.g. `document.body.appendChild(console.element)`
 
+#### `console.input`
+
+The console's `<input>` element.
+Useful for adding controls/widgets
+e.g. `console.input.parentElement.appendChild(button)`
+
 #### `console.handleUncaughtErrors()`
 
 Sets up a [`window.onerror`][] event listener and logs any uncaught error messages to the console.
@@ -99,8 +105,6 @@ Clears the console.
 
 
 ### TODO
-
-* API for adding buttons beside the input
 
 * Multiline input
 

@@ -159,6 +159,7 @@ var SimpleConsole = function(options) {
 	});
 
 	this.element = console_element;
+	this.input = input;
 
 	this.handleUncaughtErrors = function() {
 		window.onerror = error;
