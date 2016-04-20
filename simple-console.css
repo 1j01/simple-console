@@ -25,6 +25,7 @@ body {
 .simple-console-input {
 	flex: 1;
 	font-size: inherit;
+	height: 1em;
 	color: inherit;
 	background: transparent;
 	border: 0;

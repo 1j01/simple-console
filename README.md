@@ -101,9 +101,6 @@ Clears the console.
 
 * Publish to npm and/or whatnot
 
-* Get the input content to stay *exactly* in place when entering
-(it's like 1 or 2 pixels off)
-
 
 ### License
 
