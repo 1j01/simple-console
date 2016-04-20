@@ -2,7 +2,7 @@
 # Simple Console
 
 Simple Console is nice clean command-line interface for the web.
-[Try it out here.](http://1j01.github.io/simple-console/)
+[Check out the demo!](http://1j01.github.io/simple-console/)
 
 ![](screenshot.png)
 
@@ -11,11 +11,15 @@ Simple Console is nice clean command-line interface for the web.
 
 * Light and dark styles
 
-* Command history acessible with up/down arrow keys, saved to `localStorage`
-
 * Easy rich HTML output
 
-* Includes `aria` attributes
+* Command history acessible with up/down arrow keys, saved to `localStorage`
+
+* Doesn't create a duplicate history entry if you re-enter the last command
+
+* Lets you delete history entries with <kbd>Shift+Delete</kbd>
+
+* Includes [`aria`][] attributes, which is something you should care about
 
 
 ## Usage
@@ -87,8 +91,6 @@ Clears the console.
 
 ### TODO
 
-* Dedupe history entries, at least for enter up enter
-
 * Remove dependency on Octicons
 
 * API for adding buttons beside the input
@@ -116,4 +118,5 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 
+[`aria`]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA
 [`window.onerror`]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror

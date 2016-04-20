@@ -109,7 +109,9 @@ var SimpleConsole = function(options){
 			if(command === ""){ return; }
 			input.value = "";
 
-			command_history.push(command);
+			if(command_history[command_history.length - 1] !== command){
+				command_history.push(command);
+			}
 			cmdi = command_history.length;
 			save_command_history();
 
