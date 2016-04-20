@@ -24,12 +24,10 @@ Simple Console is nice clean command-line interface for the web.
 
 ## Usage
 
-Currently you have to copy
-`simple-console.css`, `simple-console.js`, and `lib/octicons/`
+Download `simple-console.css` and `simple-console.js`,
 and include in the `<head>`:
 ```html
 <link rel="stylesheet" href="simple-console.css">
-<link rel="stylesheet" href="lib/octicons/octicons.css">
 ```
 and anywhere before you use `SimpleConsole` but probably in the `<body>`:
 ```html
@@ -91,8 +89,6 @@ Clears the console.
 
 ### TODO
 
-* Remove dependency on Octicons
-
 * API for adding buttons beside the input
 
 * Multiline input
@@ -104,6 +100,9 @@ Clears the console.
 * Clean up code
 
 * Publish to npm and/or whatnot
+
+* Get the input content to stay *exactly* in place when entering
+(it's like 1 or 2 pixels off)
 
 
 ### License

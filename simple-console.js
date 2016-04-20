@@ -12,7 +12,11 @@ var SimpleConsole = function(options){
 
 	var add_chevron = function(element){
 		var icon = document.createElement("span");
-		icon.className = "octicon octicon-chevron-right";
+		icon.className = "simple-console-chevron";
+		icon.innerHTML =
+			'<svg width="1em" height="1em" viewBox="0 0 16 16">' +
+				'<path d="M6,4L10,8L6,12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>' +
+			'</svg>';
 		element.insertBefore(icon, element.firstChild);
 	};
 
@@ -117,9 +121,7 @@ var SimpleConsole = function(options){
 
 			var command_entry = log(command);
 			command_entry.classList.add("input");
-			var icon = document.createElement("span");
-			icon.className = "octicon octicon-chevron-right";
-			command_entry.insertBefore(icon, command_entry.firstChild);
+			add_chevron(command_entry);
 
 			output.scroll_to_bottom();
 

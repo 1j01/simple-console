@@ -44,8 +44,7 @@ body {
 	padding-left: 1rem; /* = A */
 	position: relative;
 }
-.simple-console-input-wrapper > .octicon:first-child,
-.entry.input > .octicon:first-child {
+.simple-console-chevron {
 	position: absolute;
 	left: 0;
 	top: 0;
