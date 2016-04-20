@@ -80,7 +80,7 @@ var SimpleConsole = function(options) {
 	};
 
 	output.is_scrolled_to_bottom = function() {
-		return output.scrollTop + output.clientHeight >= output.scrollHeight
+		return output.scrollTop + output.clientHeight >= output.scrollHeight;
 	};
 
 	output.scroll_to_bottom = function() {
@@ -88,13 +88,13 @@ var SimpleConsole = function(options) {
 	};
 
 	var command_history = [];
-	var cmdi = command_history.length;
+	var command_index = command_history.length;
 	var command_history_key = storage_id + " command history";
 
 	var load_command_history = function() {
 		try {
 			command_history = JSON.parse(localStorage[command_history_key]);
-			cmdi = command_history.length;
+			command_index = command_history.length;
 		} catch (e) {}
 	};
 
@@ -118,7 +118,7 @@ var SimpleConsole = function(options) {
 			if (command_history[command_history.length - 1] !== command) {
 				command_history.push(command);
 			}
-			cmdi = command_history.length;
+			command_index = command_history.length;
 			save_command_history();
 
 			var command_entry = log(command);
@@ -130,18 +130,28 @@ var SimpleConsole = function(options) {
 			handle_command(command);
 
 		} else if (e.keyCode === 38) { // Up
-			input.value = (--cmdi < 0) ? (cmdi = -1, "") : command_history[cmdi];
+			if (--command_index < 0) {
+				command_index = -1;
+				input.value = "";
+			} else {
+				input.value = command_history[command_index];
+			}
 			input.setSelectionRange(input.value.length, input.value.length);
 			e.preventDefault();
 		} else if (e.keyCode === 40) { // Down
-			input.value = (++cmdi >= command_history.length) ? (cmdi = command_history.length, "") : command_history[cmdi];
+			if (++command_index >= command_history.length) {
+				command_index = command_history.length;
+				input.value = "";
+			} else {
+				input.value = command_history[command_index];
+			}
 			input.setSelectionRange(input.value.length, input.value.length);
 			e.preventDefault();
 		} else if (e.keyCode === 46 && e.shiftKey) { // Shift+Delete
-			if (input.value === command_history[cmdi]) {
-				command_history.splice(cmdi, 1);
-				cmdi = Math.max(0, cmdi - 1)
-				input.value = command_history[cmdi] || "";
+			if (input.value === command_history[command_index]) {
+				command_history.splice(command_index, 1);
+				command_index = Math.max(0, command_index - 1)
+				input.value = command_history[command_index] || "";
 				save_command_history();
 			}
 			e.preventDefault();
