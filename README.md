@@ -38,6 +38,17 @@ You should probably also include a `charset` and `viewport` like in the demo.
 
 The dark styles take effect when a parent element contains the class `dark`.
 
+To make the console properly take up the entire page, use:
+```css
+html,
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex: 1;
+}
+```
+
 
 ### API
 

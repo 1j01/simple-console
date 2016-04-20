@@ -1,16 +1,13 @@
 
-html,
-body {
-	height: 100%;
+.simple-console {
 	display: flex;
 	flex: 1;
-	margin: 0;
-	box-sizing: border-box;
+	flex-direction: column;
 	font-family: sans-serif;
 }
 
-body {
-	flex-direction: column;
+.simple-console-output {
+	overflow: auto;
 }
 
 .simple-console-output,
@@ -36,9 +33,6 @@ body {
 	box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
-.simple-console-output {
-	overflow: auto;
-}
 .simple-console-input-wrapper,
 .entry {
 	padding: 0.25rem 0.5rem;
