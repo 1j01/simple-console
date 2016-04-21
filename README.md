@@ -106,17 +106,17 @@ Clears the console.
 
 ### TODO
 
+* `warn`, `info` etc. matching the [Chrome](https://developer.chrome.com/devtools/docs/console-api) and [Firefox](https://developer.mozilla.org/en-US/docs/Web/API/Console) console APIs
+
 #### Packaging
 
 * Web Component?
 
-* Publish to npm and/or whatnot
-
 #### Input
 
-* Multiline input
+* Multiline input (i.e. `textarea`)
 
-* Autocomplete
+* Autocomplete (`aria-autocomplete="inline"`)
 
 * Syntax highlighting
 

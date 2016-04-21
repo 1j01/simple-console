@@ -1,0 +1,47 @@
+{
+  "name": "simple-console",
+  "description": "A nice CLI for the web",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/1j01/simple-console.git"
+  },
+  "bugs": {
+    "url": "http://github.com/1j01/simple-console/issues"
+  },
+  "author": "Isaiah Odhner <isaiahodhner@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "console",
+    "terminal",
+    "web-console",
+    "web-terminal",
+    "rich-console",
+    "html-console",
+    "rich-html-console",
+    "cli",
+    "gcli",
+    "gui-cli",
+    "web-cli",
+    "command",
+    "command-line",
+    "command line",
+    "commandline",
+    "commandline",
+    "command-line interface",
+    "command-line-interface",
+    "command line interface",
+    "programming",
+    "nice",
+    "simple",
+    "minimal",
+    "elegant",
+    "little",
+    "web",
+    "browser",
+    "text",
+    "input",
+    "component"
+  ],
+  "main": "simple-console.js"
+}
