@@ -106,13 +106,29 @@ Clears the console.
 
 ### TODO
 
-* Multiline input
+#### Packaging
 
-* Autocomplete API
-
-* Web Component
+* Web Component?
 
 * Publish to npm and/or whatnot
+
+#### Input
+
+* Multiline input
+
+* Autocomplete
+
+* Syntax highlighting
+
+* Should probably just let you use your own input component
+
+#### FIXME
+
+* Fix input styling in Firefox with `font: inherit` and something else to make stuff line up perfectly
+
+* Fix pixel rounding issues in Edge
+
+* Fix flickering caused by scrolling to the bottom on a timeout, mainly in Chrome and Edge but also very rarely in Firefox (should try `requestAnimationFrame`)
 
 
 ### License
