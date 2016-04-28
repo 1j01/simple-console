@@ -112,9 +112,13 @@ Clears the console.
 
 * Solarized and retro themes
 
+* Position the command history menu better?
+
+* Provide an API for adding buttons and menus?
+
 #### Packaging
 
-* Rename project because "simple-console" is taken on npm. I'm thinking "cute-console"
+* Rename project because "simple-console" is taken on npm. I'm thinking "cute-console"...
 
 * Web Component?
 
@@ -129,6 +133,8 @@ Clears the console.
 * Should probably just let you use your own input component
 
 #### FIXME
+
+* Fix duplicate reading of `aria-label` and `placeholder` by some screenreaders
 
 * Fix input styling in Firefox with `font: inherit` and something else to make stuff line up perfectly
 

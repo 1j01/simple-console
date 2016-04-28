@@ -71,57 +71,80 @@ var SimpleConsole = function(options) {
 
 	var update_command_history_menu = function(){
 		command_history_menu.innerHTML = "";
-		for(var i = 0; i < command_history.length; i++){
-			var command = command_history[i];
-			// (function(command, i){
+
+		if(command_history.length > 0){
+			for(var i = 0; i < command_history.length; i++){
+				var command = command_history[i];
+				(function(command, i){
+					var menu_item = document.createElement("div");
+					menu_item.classList.add("menu-item");
+					menu_item.setAttribute("tabindex", 0);
+					menu_item.addEventListener("click", function(){
+						input.value = menu_item.textContent;
+					});
+					menu_item.textContent = command;
+					command_history_menu.appendChild(menu_item);
+				}(command, i));
+			}
+
+			var divider = document.createElement("hr");
+			command_history_menu.appendChild(divider);
+
 			var menu_item = document.createElement("div");
 			menu_item.classList.add("menu-item");
 			menu_item.setAttribute("tabindex", 0);
-			// menu_item.addEventListener("click", function(){
-				
-			// });
-			menu_item.textContent = command;
+			menu_item.addEventListener("click", clear_command_history);
+			menu_item.textContent = "Clear command history";
 			command_history_menu.appendChild(menu_item);
-			// }(command, i));
+		}else{
+			var menu_item = document.createElement("div");
+			menu_item.classList.add("menu-item");
+			menu_item.setAttribute("tabindex", 0);
+			menu_item.textContent = "Command history empty";
+			command_history_menu.appendChild(menu_item);
 		}
-		// command_history_menu.addEventListener("keydown", function(e){
-		command_history_menu.onkeydown = function(e){
-			if(e.keyCode === 38){ // Up
-				e.preventDefault();
-				if(document.activeElement.previousElementSibling){
-					document.activeElement.previousElementSibling.focus();
-				}else{
-					command_history_button.focus();
-				}
-			}else if(e.keyCode === 40){ // Down
-				e.preventDefault();
-				if(document.activeElement.nextElementSibling){
-					document.activeElement.nextElementSibling.focus();
-				}
-			}else if(e.keyCode === 13 || e.keyCode === 32){
-				e.preventDefault();
-				document.activeElement.click();
-			}
-			// console.log(e.keyCode);
-		};
-		//});
-		// command_history_menu.addEventListener("click", function(e){
-		command_history_menu.onclick = function(e){
-			var menu_item = e.target.closest(".menu-item");
-			if(menu_item){
-				input.value = menu_item.textContent;
-				close_command_history_menu();
-			}
-		};
-		//});
 	};
-	
-	command_history_button.onkeydown = function(e){
+
+	command_history_menu.addEventListener("keydown", function(e){
+		if(e.keyCode === 38){ // Up
+			e.preventDefault();
+			var prev = document.activeElement.previousElementSibling;
+			while(prev && prev.nodeName === "HR"){
+				prev = prev.previousElementSibling;
+			}
+			if(prev){
+				prev.focus();
+			}else{
+				command_history_button.focus();
+			}
+		}else if(e.keyCode === 40){ // Down
+			e.preventDefault();
+			var next = document.activeElement.nextElementSibling;
+			while(next && next.nodeName === "HR"){
+				next = next.nextElementSibling;
+			}
+			if(next){
+				next.focus();
+			}
+		}else if(e.keyCode === 13 || e.keyCode === 32){ // Enter or Space
+			e.preventDefault();
+			document.activeElement.click();
+		}
+	});
+
+	command_history_menu.addEventListener("click", function(e){
+		var menu_item = e.target.closest(".menu-item");
+		if(menu_item){
+			close_command_history_menu();
+		}
+	});
+
+	command_history_button.addEventListener("keydown", function(e){
 		if(e.keyCode === 40){ // Down
 			e.preventDefault();
 			command_history_menu.querySelector(".menu-item").focus();
 		}
-	};
+	});
 
 	var open_command_history_menu = function(){
 		update_command_history_menu();
@@ -151,7 +174,10 @@ var SimpleConsole = function(options) {
 
 	addEventListener("mousedown", function(e){
 		if(command_history_menu_is_open()){
-			if(!e.target.closest(".menu-button, .menu-popup")){
+			if(!(
+				e.target.closest(".menu-button") == command_history_button ||
+				e.target.closest(".menu-popup") == command_history_menu
+			)){
 				e.preventDefault();
 				close_command_history_menu();
 			}
@@ -218,6 +244,11 @@ var SimpleConsole = function(options) {
 		try {
 			localStorage[command_history_key] = JSON.stringify(command_history);
 		} catch (e) {}
+	};
+
+	var clear_command_history = function() {
+		command_history = [];
+		save_command_history();
 	};
 
 	load_command_history();
