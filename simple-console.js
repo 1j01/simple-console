@@ -86,9 +86,19 @@ var SimpleConsole = function(options) {
 		popup_button.addEventListener("keydown", function(e) {
 			if (e.keyCode === 40) { // Down
 				e.preventDefault();
-				popup.querySelector("[tabindex='0']").focus();
+				first_item = popup.querySelector("[tabindex='0']");
+				first_item.focus();
 			}
 		});
+
+		popup.addEventListener("keydown", function(e) {
+			if (e.keyCode === 38) { // Up
+				first_item = popup.querySelector("[tabindex='0']");
+				if (document.activeElement === first_item) {
+					popup_button.focus();
+				}
+			}
+		}, true);
 
 		var open_popup = function() {
 			popup_button.setAttribute("aria-expanded", "true");
@@ -234,6 +244,8 @@ var SimpleConsole = function(options) {
 						label: command,
 						action: function() {
 							input.value = command;
+							input.focus();
+							input.setSelectionRange(input.value.length, input.value.length);
 						}
 					});
 				}(command, i));
