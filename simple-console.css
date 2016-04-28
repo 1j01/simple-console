@@ -94,19 +94,19 @@
 	border-bottom-left-radius: 0.2em;
 	border-bottom-right-radius: 0.2em;
 }
-.popup-menu hr {
+.menu-divider {
 	border: 0;
 	border-bottom: 1px solid rgba(128, 128, 128, 0.5);
 	margin: 0.3em 0;
 }
-.simple-console-input-wrapper .menu-item {
+.popup-menu .menu-item {
 	padding: 0.25rem 0.5rem;
 }
-.simple-console-input-wrapper .menu-item:hover {
+.popup-menu .menu-item:hover {
 	background: rgba(128, 128, 128, 0.1);
 }
-.simple-console-input-wrapper .menu-item:focus,
-.simple-console-input-wrapper .menu-item:active {
+.popup-menu .menu-item:focus,
+.popup-menu .menu-item:active {
 	background: #4078c0;
 	color: white;
 	outline: 0;

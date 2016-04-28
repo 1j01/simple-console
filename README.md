@@ -81,25 +81,45 @@ The console's `<input>` element.
 Useful for adding controls/widgets
 e.g. `console.input.parentElement.appendChild(button)`
 
+#### `console.addButton(action)`
+
+Add a button to the right of the console's input area and returns the button element.
+
+`action` should be a function.
+
+#### `console.addPopupButton(updatePopup)`
+
+Add a button with a popup to the right of the console's input area and returns the button element.
+
+`updatePopup(popupElement)` should update the contents of the popup.
+
+Use `addPopupMenuButton` instead if the popup's contents are a standard menu.
+
+#### `console.addPopupMenuButton(getItems)`
+
+Add a button with a standard popup menu to the right of the console's input area and returns the button element.
+
+`getItems()` should return an array of items, with each item either of the form `{label, action}` or `{type: "divider"}`.
+
 #### `console.handleUncaughtErrors()`
 
-Sets up a [`window.onerror`][] event listener and logs any uncaught error messages to the console.
+Set up a [`window.onerror`][] event listener and logs any uncaught error messages to the console.
 
 #### `console.log(text)`
 
-Logs the given text to the console and returns an `HTMLDivElement` for further manipulation (such as the addition of classes).
+Log the given text to the console and returns an `HTMLDivElement` for further manipulation (such as the addition of classes).
 
 #### `console.log(element)`
 
-Logs the given element to the console and returns an `HTMLDivElement`.
+Log the given element to the console and returns an `HTMLDivElement`.
 
 #### `console.logHTML(html)`
 
-Logs the given HTML to the console and returns an `HTMLDivElement`.
+Log the given HTML to the console and returns an `HTMLDivElement`.
 
 #### `console.error(message)`
 
-Logs the given error message to the console and returns an `HTMLDivElement`.
+Log the given error message to the console and returns an `HTMLDivElement`.
 
 #### `console.clear()`
 
@@ -112,9 +132,7 @@ Clears the console.
 
 * Solarized and retro themes
 
-* Position the command history menu better?
-
-* Provide an API for adding buttons and menus?
+* Position menus better?
 
 #### Packaging
 

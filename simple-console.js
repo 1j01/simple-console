@@ -52,9 +52,12 @@ var SimpleConsole = function(options) {
 	console_element.appendChild(input_wrapper);
 	input_wrapper.appendChild(input);
 
-	var add_button = function() {
+	var open_popup_button;
+
+	var add_button = function(action) {
 		var button = document.createElement("button");
 		input_wrapper.appendChild(button);
+		button.addEventListener("click", action);
 		return button;
 	};
 
@@ -88,15 +91,16 @@ var SimpleConsole = function(options) {
 		});
 
 		var open_popup = function() {
-			update_popup(popup);
 			popup_button.setAttribute("aria-expanded", "true");
 			popup.setAttribute("aria-hidden", "false");
+			open_popup_button = popup_button;
+			update_popup(popup);
 		};
 
 		var close_popup = function() {
 			popup_button.setAttribute("aria-expanded", "false");
 			popup.setAttribute("aria-hidden", "true");
-			input.focus();
+			open_popup_button = null;
 		};
 
 		var popup_is_open = function() {
@@ -116,9 +120,20 @@ var SimpleConsole = function(options) {
 		addEventListener("mousedown", function(e) {
 			if (popup_is_open()) {
 				if (!(
-						e.target.closest(".popup-button") == popup_button ||
-						e.target.closest(".popup-menu") == popup
-					)) {
+					e.target.closest(".popup-button") == popup_button ||
+					e.target.closest(".popup-menu") == popup
+				)) {
+					close_popup();
+				}
+			}
+		});
+
+		addEventListener("focusin", function(e) {
+			if (popup_is_open()) {
+				if (!(
+					e.target.closest(".popup-button") == popup_button ||
+					e.target.closest(".popup-menu") == popup
+				)) {
 					e.preventDefault();
 					close_popup();
 				}
@@ -126,10 +141,10 @@ var SimpleConsole = function(options) {
 		});
 
 		popup_button.popup = popup;
-		popup_button.open_popup = open_popup;
-		popup_button.close_popup = close_popup;
-		popup_button.toggle_popup = toggle_popup;
-		popup_button.popup_is_open = popup_is_open;
+		popup_button.openPopup = open_popup;
+		popup_button.closePopup = close_popup;
+		popup_button.togglePopup = toggle_popup;
+		popup_button.popupIsOpen = popup_is_open;
 		return popup_button;
 	};
 
@@ -143,6 +158,7 @@ var SimpleConsole = function(options) {
 				var item = items[i];
 				if (item.type === "divider") {
 					var divider = document.createElement("hr");
+					divider.classList.add("menu-divider");
 					menu.appendChild(divider);
 				} else {
 					var menu_item = document.createElement("div");
@@ -160,7 +176,7 @@ var SimpleConsole = function(options) {
 		menu.addEventListener("click", function(e) {
 			var menu_item = e.target.closest(".menu-item");
 			if (menu_item) {
-				popup_button.close_popup();
+				popup_button.closePopup();
 			}
 		});
 
@@ -193,6 +209,19 @@ var SimpleConsole = function(options) {
 
 		return popup_button;
 	};
+
+	addEventListener("keydown", function(e){
+		if(e.keyCode === 27){ // Escape
+			if(open_popup_button){
+				e.preventDefault();
+				var popup_button = open_popup_button;
+				popup_button.closePopup();
+				popup_button.focus();
+			}else if(e.target.closest(".simple-console") === console_element){
+				input.focus();
+			}
+		}
+	});
 
 	add_popup_menu_button(function() {
 		var items = [];
@@ -321,6 +350,7 @@ var SimpleConsole = function(options) {
 			handle_command(command);
 
 		} else if (e.keyCode === 38) { // Up
+			
 			if (--command_index < 0) {
 				command_index = -1;
 				input.value = "";
@@ -329,7 +359,9 @@ var SimpleConsole = function(options) {
 			}
 			input.setSelectionRange(input.value.length, input.value.length);
 			e.preventDefault();
+			
 		} else if (e.keyCode === 40) { // Down
+			
 			if (++command_index >= command_history.length) {
 				command_index = command_history.length;
 				input.value = "";
@@ -338,7 +370,9 @@ var SimpleConsole = function(options) {
 			}
 			input.setSelectionRange(input.value.length, input.value.length);
 			e.preventDefault();
+			
 		} else if (e.keyCode === 46 && e.shiftKey) { // Shift+Delete
+			
 			if (input.value === command_history[command_index]) {
 				command_history.splice(command_index, 1);
 				command_index = Math.max(0, command_index - 1)
@@ -346,11 +380,15 @@ var SimpleConsole = function(options) {
 				save_command_history();
 			}
 			e.preventDefault();
+			
 		}
 	});
 
 	this.element = console_element;
 	this.input = input;
+	this.addButton = add_button;
+	this.addPopupButton = add_popup_button;
+	this.addPopupMenuButton = add_popup_menu_button;
 
 	this.handleUncaughtErrors = function() {
 		window.onerror = error;
