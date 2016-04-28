@@ -116,8 +116,6 @@ Clears the console.
 
 * Provide an API for adding buttons and menus?
 
-* Clean up the code again
-
 #### Packaging
 
 * Rename project because "simple-console" is taken on npm. I'm thinking "cute-console"...
