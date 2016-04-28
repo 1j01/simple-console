@@ -34,6 +34,35 @@
 }
 .simple-console-input-wrapper button {
 	margin-left: 0.2rem;
+	background: transparent;
+	color: inherit;
+	border: 0;
+	padding: 0;
+	font-size: 1em;
+	cursor: pointer;
+	user-select: none;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+.simple-console-input-wrapper button svg {
+	width: 1em;
+	height: 1em;
+	pointer-events: none;
+}
+.simple-console-input-wrapper button {
+	outline: 0;
+}
+.simple-console-input-wrapper button:hover,
+.simple-console-input-wrapper button:focus {
+	color: #4078c0;
+}
+.dark .simple-console-input-wrapper button:hover,
+.dark .simple-console-input-wrapper button:focus {
+	color: #007CFF;
+}
+.simple-console-input-wrapper button:active {
+	opacity: 0.8;
 }
 .simple-console-input-wrapper,
 .entry {
@@ -41,7 +70,7 @@
 	padding-left: 1rem; /* = A */
 	position: relative;
 }
-.simple-console-chevron {
+.input-chevron {
 	position: absolute;
 	left: 0;
 	top: 0;
