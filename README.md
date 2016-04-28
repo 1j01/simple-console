@@ -13,7 +13,9 @@ Simple Console is nice clean command-line interface for the web.
 
 * Easy rich HTML output
 
-* Command history acessible with up/down arrow keys, saved to `localStorage`
+* Command history accessible with up/down arrow keys, saved to `localStorage`
+
+* Command history is also accessible on mobile devices with a menu
 
 * Doesn't create a duplicate history entry if you re-enter the last command
 
@@ -108,7 +110,11 @@ Clears the console.
 
 * `warn`, `info` etc. matching the [Chrome](https://developer.chrome.com/devtools/docs/console-api) and [Firefox](https://developer.mozilla.org/en-US/docs/Web/API/Console) console APIs
 
+* Solarized and retro themes
+
 #### Packaging
+
+* Rename project because "simple-console" is taken on npm. I'm thinking "cute-console"
 
 * Web Component?
 

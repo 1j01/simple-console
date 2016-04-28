@@ -64,6 +64,38 @@
 .simple-console-input-wrapper button:active {
 	opacity: 0.8;
 }
+.simple-console-input-wrapper .menu-popup {
+	position: absolute;
+	right: 0;
+	margin: 0.5em;
+	margin-top: 1.5em;
+	border: 1px solid rgba(128, 128, 128, 0.5);
+	border-radius: 0.2em;
+	min-width: 50em;
+}
+@media (max-width: 52em) {
+	.simple-console-input-wrapper .menu-popup {
+		min-width: 0;
+		left: 0;
+	}
+}
+/*.menu-popup:not([aria-expanded="true"]) {*/
+.menu-popup[aria-hidden="true"] {
+	/*visibility: hidden;*/
+	display: none;
+}
+.simple-console-input-wrapper .menu-item {
+	padding: 0.25rem 0.5rem;
+}
+.simple-console-input-wrapper .menu-item:hover {
+	background: rgba(128, 128, 128, 0.1);
+}
+.simple-console-input-wrapper .menu-item:focus,
+.simple-console-input-wrapper .menu-item:active {
+	background: #4078c0;
+	color: white;
+	outline: 0;
+}
 .simple-console-input-wrapper,
 .entry {
 	padding: 0.25rem 0.5rem;
