@@ -48,140 +48,182 @@ var SimpleConsole = function(options) {
 	input.setAttribute("placeholder", placeholder);
 	input.setAttribute("aria-label", placeholder);
 
-	var command_history_menu = document.createElement("div");
-	command_history_menu.className = "command-history-menu menu-popup";
-	command_history_menu.setAttribute("role", "menu");
-	command_history_menu.setAttribute("aria-hidden", "true");
-	command_history_menu.id = "cmdhist" + (~~(Math.random() * 0xffffff)).toString(0x10);
-
-	var command_history_button = document.createElement("button");
-	command_history_button.className = "command-history-button menu-button";
-	command_history_button.setAttribute("aria-haspopup", "true");
-	command_history_button.setAttribute("aria-owns", command_history_menu.id);
-	command_history_button.setAttribute("aria-expanded", "false");
-	command_history_button.setAttribute("aria-label", "Command history");
-	command_history_button.setAttribute("title", "Command history");
-	add_command_history_icon(command_history_button);
-
 	console_element.appendChild(output);
 	console_element.appendChild(input_wrapper);
 	input_wrapper.appendChild(input);
-	input_wrapper.appendChild(command_history_button);
-	input_wrapper.appendChild(command_history_menu);
 
-	var update_command_history_menu = function(){
-		command_history_menu.innerHTML = "";
+	var add_button = function(){
+		var button = document.createElement("button");
+		input_wrapper.appendChild(button);
+		return button;
+	};
+
+	var add_popup_button = function(update_popup){
+
+		var popup = document.createElement("popup-menu");
+
+		var popup = document.createElement("div");
+		popup.className = "popup-menu";
+		popup.setAttribute("role", "menu");
+		popup.setAttribute("aria-hidden", "true");
+		popup.id = "popup" + (~~(Math.random() * 0xffffff)).toString(0x10);
+
+		var popup_button = document.createElement("button");
+		popup_button.className = "popup-button";
+		popup_button.setAttribute("aria-haspopup", "true");
+		popup_button.setAttribute("aria-owns", popup.id);
+		popup_button.setAttribute("aria-expanded", "false");
+		popup_button.setAttribute("aria-label", "Command history");
+		popup_button.setAttribute("title", "Command history");
+		add_command_history_icon(popup_button);
+
+		input_wrapper.appendChild(popup_button);
+		input_wrapper.appendChild(popup);
+
+		popup_button.addEventListener("keydown", function(e){
+			if(e.keyCode === 40){ // Down
+				e.preventDefault();
+				popup.querySelector("[tabindex='0']").focus();
+			}
+		});
+
+		var open_popup = function(){
+			update_popup(popup);
+			popup_button.setAttribute("aria-expanded", "true");
+			popup.setAttribute("aria-hidden", "false");
+		};
+
+		var close_popup = function(){
+			popup_button.setAttribute("aria-expanded", "false");
+			popup.setAttribute("aria-hidden", "true");
+			input.focus();
+		};
+
+		var popup_is_open = function(){
+			return popup_button.getAttribute("aria-expanded") == "true";
+		};
+
+		var toggle_popup = function(){
+			if(popup_is_open()){
+				close_popup();
+			}else{
+				open_popup();
+			}
+		};
+
+		popup_button.addEventListener("click", toggle_popup);
+
+		addEventListener("mousedown", function(e){
+			if(popup_is_open()){
+				if(!(
+					e.target.closest(".popup-button") == popup_button ||
+					e.target.closest(".popup-menu") == popup
+				)){
+					e.preventDefault();
+					close_popup();
+				}
+			}
+		});
+
+		popup_button.popup = popup;
+		popup_button.open_popup = open_popup;
+		popup_button.close_popup = close_popup;
+		popup_button.toggle_popup = toggle_popup;
+		popup_button.popup_is_open = popup_is_open;
+		return popup_button;
+	};
+
+	var add_popup_menu_button = function(get_items){
+		
+		var popup_button = add_popup_button(function(menu){
+			menu.innerHTML = "";
+			var items = get_items();
+			
+			for(var i = 0; i < items.length; i++){
+				var item = items[i];
+				if(item.type === "divider"){
+					var divider = document.createElement("hr");
+					menu.appendChild(divider);
+				}else{
+					var menu_item = document.createElement("div");
+					menu_item.classList.add("menu-item");
+					menu_item.setAttribute("tabindex", 0);
+					menu_item.addEventListener("click", item.action);
+					menu_item.textContent = item.label;
+					menu.appendChild(menu_item);
+				}
+			}
+		});
+
+		var menu = popup_button.popup;
+
+		menu.addEventListener("click", function(e){
+			var menu_item = e.target.closest(".menu-item");
+			if(menu_item){
+				popup_button.close_popup();
+			}
+		});
+
+		menu.addEventListener("keydown", function(e){
+			if(e.keyCode === 38){ // Up
+				e.preventDefault();
+				var prev = document.activeElement.previousElementSibling;
+				while(prev && prev.nodeName === "HR"){
+					prev = prev.previousElementSibling;
+				}
+				if(prev){
+					prev.focus();
+				}else{
+					popup_button.focus();
+				}
+			}else if(e.keyCode === 40){ // Down
+				e.preventDefault();
+				var next = document.activeElement.nextElementSibling;
+				while(next && next.nodeName === "HR"){
+					next = next.nextElementSibling;
+				}
+				if(next){
+					next.focus();
+				}
+			}else if(e.keyCode === 13 || e.keyCode === 32){ // Enter or Space
+				e.preventDefault();
+				document.activeElement.click();
+			}
+		});
+
+		return popup_button;
+	};
+
+	add_popup_menu_button(function(){
+		var items = [];
 
 		if(command_history.length > 0){
 			for(var i = 0; i < command_history.length; i++){
 				var command = command_history[i];
 				(function(command, i){
-					var menu_item = document.createElement("div");
-					menu_item.classList.add("menu-item");
-					menu_item.setAttribute("tabindex", 0);
-					menu_item.addEventListener("click", function(){
-						input.value = menu_item.textContent;
+					items.push({
+						label: command,
+						action: function(){
+							input.value = command;
+						}
 					});
-					menu_item.textContent = command;
-					command_history_menu.appendChild(menu_item);
 				}(command, i));
 			}
 
-			var divider = document.createElement("hr");
-			command_history_menu.appendChild(divider);
+			items.push({type: "divider"});
 
-			var menu_item = document.createElement("div");
-			menu_item.classList.add("menu-item");
-			menu_item.setAttribute("tabindex", 0);
-			menu_item.addEventListener("click", clear_command_history);
-			menu_item.textContent = "Clear command history";
-			command_history_menu.appendChild(menu_item);
+			items.push({
+				label: "Clear command history",
+				action: clear_command_history
+			});
 		}else{
-			var menu_item = document.createElement("div");
-			menu_item.classList.add("menu-item");
-			menu_item.setAttribute("tabindex", 0);
-			menu_item.textContent = "Command history empty";
-			command_history_menu.appendChild(menu_item);
+			items.push({
+				label: "Command history empty",
+				action: function(){}
+			});
 		}
-	};
 
-	command_history_menu.addEventListener("keydown", function(e){
-		if(e.keyCode === 38){ // Up
-			e.preventDefault();
-			var prev = document.activeElement.previousElementSibling;
-			while(prev && prev.nodeName === "HR"){
-				prev = prev.previousElementSibling;
-			}
-			if(prev){
-				prev.focus();
-			}else{
-				command_history_button.focus();
-			}
-		}else if(e.keyCode === 40){ // Down
-			e.preventDefault();
-			var next = document.activeElement.nextElementSibling;
-			while(next && next.nodeName === "HR"){
-				next = next.nextElementSibling;
-			}
-			if(next){
-				next.focus();
-			}
-		}else if(e.keyCode === 13 || e.keyCode === 32){ // Enter or Space
-			e.preventDefault();
-			document.activeElement.click();
-		}
-	});
-
-	command_history_menu.addEventListener("click", function(e){
-		var menu_item = e.target.closest(".menu-item");
-		if(menu_item){
-			close_command_history_menu();
-		}
-	});
-
-	command_history_button.addEventListener("keydown", function(e){
-		if(e.keyCode === 40){ // Down
-			e.preventDefault();
-			command_history_menu.querySelector(".menu-item").focus();
-		}
-	});
-
-	var open_command_history_menu = function(){
-		update_command_history_menu();
-		command_history_button.setAttribute("aria-expanded", "true");
-		command_history_menu.setAttribute("aria-hidden", "false");
-	};
-
-	var close_command_history_menu = function(){
-		command_history_button.setAttribute("aria-expanded", "false");
-		command_history_menu.setAttribute("aria-hidden", "true");
-		input.focus();
-	};
-
-	var command_history_menu_is_open = function(){
-		return command_history_button.getAttribute("aria-expanded") == "true";
-	};
-
-	var toggle_command_history_menu = function(){
-		if(command_history_menu_is_open()){
-			close_command_history_menu();
-		}else{
-			open_command_history_menu();
-		}
-	};
-
-	command_history_button.addEventListener("click", toggle_command_history_menu);
-
-	addEventListener("mousedown", function(e){
-		if(command_history_menu_is_open()){
-			if(!(
-				e.target.closest(".menu-button") == command_history_button ||
-				e.target.closest(".menu-popup") == command_history_menu
-			)){
-				e.preventDefault();
-				close_command_history_menu();
-			}
-		}
+		return items;
 	});
 
 	var clear = function() {
