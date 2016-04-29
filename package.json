@@ -1,7 +1,7 @@
 {
   "name": "simple-console",
   "description": "A nice CLI for the web",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "repository": {
     "type": "git",
     "url": "http://github.com/1j01/simple-console.git"

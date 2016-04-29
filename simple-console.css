@@ -134,6 +134,27 @@
 	color: #A00;
 	background: #FFF5F5;
 }
+.dark .error {
+	color: #A00;
+	background: rgba(255, 0, 0, 0.15);
+}
+.warning {
+	color: #8a6300;
+	background: rgba(255, 230, 0, 0.24);
+}
+.dark .warning {
+	color: #ffdc46;
+	background: rgba(255, 171, 0, 0.2);
+}
+.info {
+	color: rgb(0, 89, 148);
+	background: rgba(0, 136, 255, 0.17);
+}
+.dark .info {
+	color: rgb(98, 155, 193);
+	background: rgba(0, 136, 255, 0.17);
+}
+
 
 .light,
 .light .popup-menu {
@@ -145,10 +166,7 @@
 	background: black;
 	color: white;
 }
-.dark .error {
-	color: #A00;
-	background: rgba(255, 0, 0, 0.15);
-}
+
 .dark .simple-console-input:focus {
 	box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
 }

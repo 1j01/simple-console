@@ -105,21 +105,29 @@ Add a button with a standard popup menu to the right of the console's input area
 
 Set up a [`window.onerror`][] event listener and logs any uncaught error messages to the console.
 
-#### `console.log(text)`
+#### `console.log(content)`
 
-Log the given text to the console and returns an `HTMLDivElement` for further manipulation (such as the addition of classes).
-
-#### `console.log(element)`
-
-Log the given element to the console and returns an `HTMLDivElement`.
+Log the given text or element to the console.
 
 #### `console.logHTML(html)`
 
-Log the given HTML to the console and returns an `HTMLDivElement`.
+Log the given HTML to the console.
 
-#### `console.error(message)`
+#### `console.error(content)`
 
-Log the given error message to the console and returns an `HTMLDivElement`.
+Log the given error message (or element) to the console.
+
+#### `console.warn(content)`
+
+Log the given warning message (or element) to the console.
+
+#### `console.info(content)`
+
+Log the given info message (or element) to the console.
+
+#### `console.getLastEntry()`
+
+Returns the last logged entry as an `HTMLDivElement` for further manipulation.
 
 #### `console.clear()`
 
@@ -128,7 +136,7 @@ Clears the console.
 
 ### TODO
 
-* `warn`, `info` etc. matching the [Chrome](https://developer.chrome.com/devtools/docs/console-api) and [Firefox](https://developer.mozilla.org/en-US/docs/Web/API/Console) console APIs
+* Support multiple arguments to `log`, `warn` etc.
 
 * Solarized and retro themes
 

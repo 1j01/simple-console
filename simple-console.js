@@ -271,6 +271,11 @@ var SimpleConsole = function(options) {
 		output.innerHTML = "";
 	};
 
+	var last_entry;
+	var get_last_entry = function(){
+		return last_entry;
+	};
+
 	var log = function(content) {
 		var was_scrolled_to_bottom = output.is_scrolled_to_bottom();
 
@@ -289,19 +294,28 @@ var SimpleConsole = function(options) {
 			}
 		});
 
+		last_entry = entry;
 		return entry;
 	};
 
 	var logHTML = function(html) {
-		var entry = log("");
-		entry.innerHTML = html;
-		return entry;
+		log("");
+		get_last_entry().innerHTML = html;
 	};
 
-	var error = function(error_message) {
-		var error_entry = log(error_message);
-		error_entry.classList.add("error");
-		return error_entry;
+	var error = function(content) {
+		log(content);
+		get_last_entry().classList.add("error");
+	};
+
+	var warn = function(content) {
+		log(content);
+		get_last_entry().classList.add("warning");
+	};
+
+	var info = function(content) {
+		log(content);
+		get_last_entry().classList.add("info");
 	};
 
 	output.is_scrolled_to_bottom = function() {
@@ -407,6 +421,9 @@ var SimpleConsole = function(options) {
 	this.log = log;
 	this.logHTML = logHTML;
 	this.error = error;
+	this.warn = warn;
+	this.info = info;
+	this.getLastEntry = get_last_entry;
 	this.clear = clear;
 
 };
