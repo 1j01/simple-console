@@ -197,10 +197,8 @@ var SimpleConsole = function(options) {
 				while (prev && prev.nodeName === "HR") {
 					prev = prev.previousElementSibling;
 				}
-				if (prev) {
+				if (prev && prev.classList.contains("menu-item")) {
 					prev.focus();
-				} else {
-					popup_button.focus();
 				}
 			} else if (e.keyCode === 40) { // Down
 				e.preventDefault();
@@ -208,7 +206,7 @@ var SimpleConsole = function(options) {
 				while (next && next.nodeName === "HR") {
 					next = next.nextElementSibling;
 				}
-				if (next) {
+				if (next && next.classList.contains("menu-item")) {
 					next.focus();
 				}
 			} else if (e.keyCode === 13 || e.keyCode === 32) { // Enter or Space
