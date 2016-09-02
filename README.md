@@ -58,17 +58,21 @@ body {
 
 Creates a console instance.
 
-`options.handleCommand(input)` is required.
+**Note:** The `SimpleConsole` object is referred to as `console` below, but you should probably give it a different name so it doesn't conflict with the global console object.
+
+`options.handleCommand(input)` is called when the user hits <kbd>Enter</kbd>.
 You can handle the input however you want.
 It's recommended that you catch errors and log them with `console.error`.
+Other logging methods are documented below.
 
-`options.placeholder` is strongly recommended especially with the default styling as there is very little other indication of the input (when it's not focused).
+`options.outputOnly` specifies that there should be no input.
+You must specify either `outputOnly` or `handleCommand`.
 
-`options.autofocus` should be used within an application that is primarily a console.
+`options.placeholder` is strongly recommended especially with the default input styling as there is very little visual indication of the input (when it's not focused).
+
+`options.autofocus` should be used within an application where the console is the primary interaction point.
 
 `options.storageID` should be used to separate the command history of different consoles.
-
-**Note:** The `SimpleConsole` object is referred to as `console` below, but you should probably give it a different name so it doesn't conflict with the global console object.
 
 #### `console.element`
 

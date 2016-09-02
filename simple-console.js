@@ -1,10 +1,11 @@
 
 var SimpleConsole = function(options) {
 
-	if (!options.handleCommand) {
-		throw new Error("options.handleCommand is required");
+	if (!options.handleCommand && !options.outputOnly) {
+		throw new Error("You must specify either options.handleCommand(input) or options.outputOnly");
 	}
 
+	var output_only = options.outputOnly;
 	var handle_command = options.handleCommand;
 	var placeholder = options.placeholder || "";
 	var autofocus = options.autofocus;
@@ -49,7 +50,9 @@ var SimpleConsole = function(options) {
 	input.setAttribute("aria-label", placeholder);
 
 	console_element.appendChild(output);
-	console_element.appendChild(input_wrapper);
+	if(!output_only){
+		console_element.appendChild(input_wrapper);
+	}
 	input_wrapper.appendChild(input);
 
 	var open_popup_button;
