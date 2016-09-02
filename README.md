@@ -15,7 +15,7 @@ Simple Console is nice clean command-line interface for the web.
 
 * Command history accessible with up/down arrow keys, saved to `localStorage`
 
-* Command history is also accessible on mobile devices with a menu
+* Command history also accessible on mobile devices with a menu
 
 * Doesn't create a duplicate history entry if you re-enter the last command
 
@@ -79,17 +79,17 @@ e.g. `document.body.appendChild(console.element)`
 
 The console's `<input>` element.
 Useful for adding controls/widgets
-e.g. `console.input.parentElement.appendChild(button)`
+i.e. `console.input.parentElement.appendChild(widget)`
 
 #### `console.addButton(action)`
 
-Add a button to the right of the console's input area and returns the button element.
+Adds a button to the right of the console's input area and returns the button element.
 
 `action` should be a function.
 
 #### `console.addPopupButton(updatePopup)`
 
-Add a button with a popup to the right of the console's input area and returns the button element.
+Adds a button with a popup to the right of the console's input area and returns the button element.
 
 `updatePopup(popupElement)` should update the contents of the popup.
 
@@ -97,33 +97,33 @@ Use `addPopupMenuButton` instead if the popup's contents are a standard menu.
 
 #### `console.addPopupMenuButton(getItems)`
 
-Add a button with a standard popup menu to the right of the console's input area and returns the button element.
+Adds a button with a standard popup menu to the right of the console's input area and returns the button element.
 
 `getItems()` should return an array of items, with each item either of the form `{label, action}` or `{type: "divider"}`.
 
 #### `console.handleUncaughtErrors()`
 
-Set up a [`window.onerror`][] event listener and logs any uncaught error messages to the console.
+Sets up a [`window.onerror`][] event listener which logs any uncaught errors to the console.
 
 #### `console.log(content)`
 
-Log the given text or element to the console.
+Logs the given text or element to the console.
 
 #### `console.logHTML(html)`
 
-Log the given HTML to the console.
+Logs the given HTML to the console.
 
 #### `console.error(content)`
 
-Log the given error message (or element) to the console.
+Logs the given error message (or element) to the console.
 
 #### `console.warn(content)`
 
-Log the given warning message (or element) to the console.
+Logs the given warning message (or element) to the console.
 
 #### `console.info(content)`
 
-Log the given info message (or element) to the console.
+Logs the given info message (or element) to the console.
 
 #### `console.getLastEntry()`
 
