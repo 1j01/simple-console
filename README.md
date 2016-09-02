@@ -125,6 +125,10 @@ Logs the given warning message (or element) to the console.
 
 Logs the given info message (or element) to the console.
 
+#### `console.success(content)`
+
+Logs the given success message (or element) to the console.
+
 #### `console.getLastEntry()`
 
 Returns the last logged entry as an `HTMLDivElement` for further manipulation.
@@ -137,6 +141,8 @@ Clears the console.
 ### TODO
 
 * Support multiple arguments to `log`, `warn` etc.
+
+* Distinguish error/success/warning messages for screen readers (maybe with `cue-before` from the CSS Speech Module)
 
 * Solarized and retro themes
 
@@ -160,7 +166,7 @@ Clears the console.
 
 #### FIXME
 
-* Fix duplicate reading of `aria-label` and `placeholder` by some screenreaders
+* Fix duplicate reading of `aria-label` and `placeholder` by some screen readers
 
 * Fix input styling in Firefox with `font: inherit` and something else to make stuff line up perfectly
 

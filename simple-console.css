@@ -154,6 +154,14 @@
 	color: rgb(98, 155, 193);
 	background: rgba(0, 136, 255, 0.17);
 }
+.success {
+	color: rgb(77, 148, 0);
+	background: rgba(96, 226, 90, 0.17);
+}
+.dark .success {
+	color: rgb(138, 212, 58);
+	background: rgba(11, 255, 0, 0.17);
+}
 
 
 .light,

@@ -318,6 +318,11 @@ var SimpleConsole = function(options) {
 		get_last_entry().classList.add("info");
 	};
 
+	var success = function(content) {
+		log(content);
+		get_last_entry().classList.add("success");
+	};
+
 	output.is_scrolled_to_bottom = function() {
 		return output.scrollTop + output.clientHeight >= output.scrollHeight;
 	};
@@ -423,6 +428,7 @@ var SimpleConsole = function(options) {
 	this.error = error;
 	this.warn = warn;
 	this.info = info;
+	this.success = success;
 	this.getLastEntry = get_last_entry;
 	this.clear = clear;
 
