@@ -9,13 +9,13 @@ Simple Console is nice clean command-line interface for the web.
 
 ## Features
 
-* Light and dark styles
+* Light and [dark styles](#dark-mode)
 
-* Easy rich HTML output
+* Easy rich HTML [output](#console-log-content)
 
 * Command history accessible with up/down arrow keys, saved to `localStorage`
 
-* Command history also accessible on mobile devices with a menu
+* Command history menu for mobile accessibility
 
 * Doesn't create a duplicate history entry if you re-enter the last command
 
@@ -36,9 +36,9 @@ and anywhere before you use `SimpleConsole` but probably in the `<body>`:
 <script src="simple-console.js"></script>
 ```
 
-You should probably also include a `charset` and `viewport` like in the demo.
+### Page Setup
 
-The dark styles take effect when a parent element contains the class `dark`.
+You should probably also include a `charset` and `viewport` like in the demo.
 
 To make the console properly take up the entire page, use:
 ```css
@@ -51,6 +51,25 @@ body {
 }
 ```
 
+### Dark Mode
+
+The dark styles take effect when the console element or any parent contains the class `dark`.
+
+You could add a theme switcher like so:
+
+```js
+var toggleDarkMode = function() {
+    if (console.element.classList.contains("dark")) {
+        console.element.classList.remove("dark");
+    } else {
+        console.element.classList.add("dark");
+    }
+};
+var button = console.addButton(toggleDarkMode);
+button.textContent = "◐";
+button.setAttribute("title", "Toggle dark theme");
+button.setAttribute("aria-label", "Toggle dark theme");
+```
 
 ### API
 
