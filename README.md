@@ -21,7 +21,8 @@ Simple Console is nice clean command-line interface for the web.
 
 * Lets you delete history entries with <kbd>Shift+Delete</kbd>
 
-* Includes [`aria`][] attributes, which is something you should care about
+* Includes [`aria`][] attributes
+(although the accessibility could still use some work!)
 
 
 ## Usage
@@ -36,11 +37,35 @@ and anywhere before you use `SimpleConsole` but probably in the `<body>`:
 <script src="simple-console.js"></script>
 ```
 
+### Example
+
+```js
+var con = new SimpleConsole({
+    placeholder: "Enter JavaScript",
+    handleCommand: function(command){
+      try {
+        con.log(eval(command));
+      } catch(error) {
+        con.error(error);
+      }
+    },
+    autofocus: true, // if the console is to be the primary interface of the page
+    storageID: "app-console"
+});
+
+// add the console to the page
+document.body.appendChild(con.element);
+
+// show any uncaught errors
+con.handleUncaughtErrors();
+```
+
+
 ### Page Setup
 
 You should probably also include a `charset` and `viewport` like in the demo.
 
-To make the console properly take up the entire page, use:
+To make the console take up the entire page, use:
 ```css
 html,
 body {
@@ -79,7 +104,7 @@ Creates a console instance.
 
 **Note:** The `SimpleConsole` object is referred to as `console` below, but you should probably give it a different name so it doesn't conflict with the global console object.
 
-`options.handleCommand(input)` is called when the user hits <kbd>Enter</kbd>.
+`options.handleCommand(command)` is called when the user hits <kbd>Enter</kbd>.
 You can handle the input however you want.
 It's recommended that you catch errors and log them with `console.error`.
 Other logging methods are documented below.
@@ -89,9 +114,10 @@ You must specify either `outputOnly` or `handleCommand`.
 
 `options.placeholder` is strongly recommended especially with the default input styling as there is very little visual indication of the input (when it's not focused).
 
-`options.autofocus` should be used within an application where the console is the primary interaction point.
+`options.autofocus` should be used within an application where the console is the primary interface.
 
 `options.storageID` should be used to separate the command history of different consoles.
+It's used as a [`localStorage`][] key prefix.
 
 #### `console.element`
 
@@ -101,7 +127,7 @@ e.g. `document.body.appendChild(console.element)`
 #### `console.input`
 
 The console's `<input>` element.
-Useful for adding controls/widgets
+Can be used to add controls/widgets
 i.e. `console.input.parentElement.appendChild(widget)`
 
 #### `console.addButton(action)`
@@ -175,7 +201,7 @@ Clears the console.
 
 * Rename project because "simple-console" is taken on npm. I'm thinking "cute-console"...
 
-* Web Component?
+* This seems like it would be an ideal candidate for a Web Component
 
 #### Input
 
@@ -193,9 +219,9 @@ Clears the console.
 
 * Fix input styling in Firefox with `font: inherit` and something else to make stuff line up perfectly
 
-* Fix pixel rounding issues in Edge
+* Fix pixel rounding issues in Edge and/or when zoomed in
 
-* Fix flickering caused by scrolling to the bottom on a timeout, mainly in Chrome and Edge but also very rarely in Firefox (should try `requestAnimationFrame`)
+* Fix flickering caused by scrolling to the bottom on a timeout, mainly in Chrome and Edge but also very rarely in Firefox by using `requestAnimationFrame`
 
 
 ### License
@@ -212,3 +238,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 [`aria`]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA
 [`window.onerror`]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror
+[`localStorage`]: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
