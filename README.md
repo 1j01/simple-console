@@ -41,16 +41,16 @@ and anywhere before you use `SimpleConsole` but probably in the `<body>`:
 
 ```js
 var con = new SimpleConsole({
-    placeholder: "Enter JavaScript",
-    handleCommand: function(command){
-      try {
-        con.log(eval(command));
-      } catch(error) {
-        con.error(error);
-      }
-    },
-    autofocus: true, // if the console is to be the primary interface of the page
-    storageID: "app-console"
+	placeholder: "Enter JavaScript",
+	handleCommand: function(command){
+		try {
+			con.log(eval(command));
+		} catch(error) {
+			con.error(error);
+		}
+	},
+	autofocus: true, // if the console is to be the primary interface of the page
+	storageID: "app-console"
 });
 
 // add the console to the page
@@ -69,10 +69,10 @@ To make the console take up the entire page, use:
 ```css
 html,
 body {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    flex: 1;
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex: 1;
 }
 ```
 
@@ -84,11 +84,11 @@ You could add a theme switcher like so:
 
 ```js
 var toggleDarkMode = function() {
-    if (console.element.classList.contains("dark")) {
-        console.element.classList.remove("dark");
-    } else {
-        console.element.classList.add("dark");
-    }
+	if (console.element.classList.contains("dark")) {
+		console.element.classList.remove("dark");
+	} else {
+		console.element.classList.add("dark");
+	}
 };
 var button = console.addButton(toggleDarkMode);
 button.textContent = "◐";
