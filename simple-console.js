@@ -291,7 +291,7 @@ var SimpleConsole = function(options) {
 		}
 		output.appendChild(entry);
 
-		setTimeout(function() {
+		requestAnimationFrame(function() {
 			if (was_scrolled_to_bottom) {
 				output.scroll_to_bottom();
 			}
@@ -327,7 +327,8 @@ var SimpleConsole = function(options) {
 	};
 
 	output.is_scrolled_to_bottom = function() {
-		return output.scrollTop + output.clientHeight >= output.scrollHeight;
+		// 1px margin of error needed in case the user is zoomed in
+		return output.scrollTop + output.clientHeight + 1 >= output.scrollHeight;
 	};
 
 	output.scroll_to_bottom = function() {

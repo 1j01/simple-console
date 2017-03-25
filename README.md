@@ -219,10 +219,6 @@ Clears the console.
 
 * Fix input styling in Firefox with `font: inherit` and something else to make stuff line up perfectly
 
-* Fix pixel rounding issues in Edge and/or when zoomed in
-
-* Fix flickering caused by scrolling to the bottom on a timeout, mainly in Chrome and Edge but also very rarely in Firefox by using `requestAnimationFrame`
-
 
 ### License
 
