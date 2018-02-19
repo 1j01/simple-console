@@ -11,7 +11,7 @@ Simple Console is nice clean command-line interface for the web.
 
 * Light and [dark styles](#dark-mode)
 
-* Easy rich HTML [output](#console-log-content)
+* Easy rich HTML [output](#consolelogcontent)
 
 * Command history accessible with up/down arrow keys, saved to `localStorage`
 
@@ -199,9 +199,9 @@ Clears the console.
 
 #### Packaging
 
-* Rename project because "simple-console" is taken on npm. I'm thinking "cute-console"...
+* Rename project because "simple-console" is taken on npm ("cute-console" maybe?)
 
-* This seems like it would be an ideal candidate for a Web Component
+* This seems like it would be an *ideal* candidate for a Web Component!
 
 #### Input
 
@@ -222,7 +222,7 @@ Clears the console.
 
 ### License
 
-The MIT License (MIT)
+The MIT License (MIT)  
 Copyright (c) 2016 Isaiah Odhner
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
