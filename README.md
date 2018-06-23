@@ -2,7 +2,7 @@
 # Simple Console
 
 Simple Console is nice clean command-line interface for the web.
-[Check out the demo!](http://1j01.github.io/simple-console/)
+[Check out the demo!](https://1j01.github.io/simple-console/)
 
 ![](screenshot.png)
 

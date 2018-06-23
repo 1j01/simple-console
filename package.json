@@ -4,10 +4,10 @@
   "version": "0.6.3",
   "repository": {
     "type": "git",
-    "url": "http://github.com/1j01/simple-console.git"
+    "url": "https://github.com/1j01/simple-console.git"
   },
   "bugs": {
-    "url": "http://github.com/1j01/simple-console/issues"
+    "url": "https://github.com/1j01/simple-console/issues"
   },
   "author": "Isaiah Odhner <isaiahodhner@gmail.com>",
   "license": "MIT",
