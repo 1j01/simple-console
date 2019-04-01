@@ -21,9 +21,25 @@ Simple Console is nice clean command-line interface for the web.
 
 * Lets you delete history entries with <kbd>Shift+Delete</kbd>
 
-* Includes [`aria`][] attributes
-(although the accessibility could still use some work!)
+* Automatically scrolls down to new entries - **unless** you scroll up
+(good in case there are a lot of messages being logged and you want to view earlier output!)
 
+* Includes [`aria`][] attributes, although the accessibility still needs work!
+
+* Vanilla JavaScript and CSS with no external dependencies
+
+* [MIT licensed](LICENSE)
+
+
+## Limitations
+
+- Delivered as two separate files (CSS and JS).  
+(It'd be nicer if it was a single JS file, and especially if it was a Web Component!
+[Wanna help out?](https://github.com/1j01/simple-console/issues/6))
+
+- The CSS uses some generic selectors like `error` and `success` that are [likely to conflict](https://github.com/1j01/simple-console/issues/9).
+
+- The `console.log`, and `console.warn` etc. methods only accept a single argument; they don't match the browser [console API](https://developer.mozilla.org/en-US/docs/Web/API/Console) - which doesn't have a standard specification, by the way, it's just some de facto shared methods between browsers.
 
 ## Usage
 
@@ -50,22 +66,25 @@ var con = new SimpleConsole({
 		}
 	},
 	autofocus: true, // if the console is to be the primary interface of the page
-	storageID: "app-console"
+	storageID: "app-console", // or e.g. "simple-console-#1" or "workspace-1:javascript-console"
 });
 
 // add the console to the page
 document.body.appendChild(con.element);
 
-// show any uncaught errors
+// show any uncaught errors (errors may be unrelated to the console usage)
 con.handleUncaughtErrors();
 ```
 
+See [demo.js](demo.js) for a more complete example (altho not *that* complete).
 
 ### Page Setup
 
-You should probably also include a `charset` and `viewport` like in the demo.
+You should probably include a `charset` and `viewport` [like in the demo](index.html).
 
-To make the console take up the entire page, use:
+You can position the console on the page the same way you might any div.
+
+To make the console **take up the entire page**, use:
 ```css
 html,
 body {
@@ -75,6 +94,9 @@ body {
 	flex: 1;
 }
 ```
+
+If you want a Quake-style dropdown console, [just ask](https://github.com/1j01/simple-console/issues/7)
+and I'll be happy to cook up an example for you.
 
 ### Dark Mode
 
@@ -222,15 +244,7 @@ Clears the console.
 
 ### License
 
-The MIT License (MIT)  
-Copyright (c) 2016 Isaiah Odhner
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
+MIT-licensed, see [LICENSE](LICENSE)
 
 [`aria`]: https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA
 [`window.onerror`]: https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror

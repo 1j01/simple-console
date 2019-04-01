@@ -21,7 +21,8 @@
 }
 .simple-console-input {
 	flex: 1;
-	font-size: inherit;
+	font: inherit;
+	line-height: normal !important; /* forced by Firefox, so let's make it a consistent constraint */
 	height: 1em;
 	color: inherit;
 	background: transparent;
