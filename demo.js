@@ -8,7 +8,8 @@ document.body.appendChild(con.element);
 
 con.logHTML(
 	"<h1>Welcome to <a href='https://github.com/1j01/simple-console'>Simple Console!</a></h1>" +
-	"<p>Try entering <code>5 + 5</code> below. Or some faces (ASCII emoticons like :-P).</p>"
+	"<p>Try entering <code>5 + 5</code> below. Or some faces (ASCII emoticons like <code>:-P</code>).</p>" +
+	(location.pathname.match(/tilde|backtick|quake/i) ? "" : "<p>Also check out the <a href='tilde" + (location.hostname.match(/github/) ? "" : ".html") +"'>Quake-style dropdown console example</a>.</p>")
 );
 
 function handle_command(command){
@@ -27,9 +28,9 @@ function handle_command(command){
 		con.log((command.match(/^[A-Z]/) ? "Hello" : "hello") + (command.match(/\.|!/) ? "." : ""));
 	}else if(command.match(/^((Well|So|Um|Uh),? )?(What'?s up|Sup)/i)){
 		con.log((command.match(/^[A-Z]/) ? "Not much" : "not much") + (command.match(/\?|!/) ? "." : ""));
-	}else if(command.match(/^(>?[:;8X]-?[()O03PCDS])$/i)){
+	}else if(command.match(/^(>?[:;8X][-o ]?[O03PCDS\\/|()[\]{}])$/i)){
 		log_emoticon(command, +1);
-	}else if(command.match(/^([D()O0C]-?[:;8X]<?)$/i)){
+	}else if(command.match(/^([O03PCDS\\/|()[\]{}][-o ]?[:;8X]<?)$/i)){
 		log_emoticon(command, -1);
 	}else if(command.match(/^<3$/i)){
 		con.log("❤");
