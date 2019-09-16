@@ -1,0 +1,105 @@
+<!doctype html>
+<head>
+	<meta charset="utf-8">
+	<title>Simple Console - Tilde Dropdown Console Example</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="simple-console.css">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<style>
+		h1, p {
+			margin: 0.5rem 0;
+		}
+		h1 {
+			font-family: "Open Sans", sans-serif;
+			font-weight: normal;
+		}
+		a {
+			color: #4078c0;
+		}
+		a:not(:hover) {
+			text-decoration: none;
+		}
+		code {
+			font-family: inherit;
+			padding: 0.1em 0.2em;
+			border: 1px solid rgba(128, 128, 128, 0.5);
+			border-radius: 0.1em;
+		}
+
+		/* Tilde Dropdown CSS: */
+		.simple-console {
+			position: fixed;
+			opacity: 0;
+			transition:
+				opacity 0.2s ease,
+				top 0.2s ease,
+				bottom 0.2s ease,
+				left 0.2s ease,
+				right 0.2s ease;
+			outline: 1px solid gray;
+			/* remove this to use theme switching: */
+			background: white;
+			color: black;
+		}
+		.console-open .simple-console {
+			opacity: 1;
+		}
+		.console-anchor-top .simple-console,
+		.console-anchor-bottom .simple-console {
+			width: 100%;
+			height: 40%;
+			left: 0;
+			right: 0;
+		}
+		.console-anchor-left .simple-console,
+		.console-anchor-right .simple-console {
+			width: 40%;
+			height: 100%;
+			top: 0;
+			bottom: 0;
+		}
+		.console-anchor-top .simple-console {
+			top: -100%;
+		}
+		.console-anchor-bottom .simple-console {
+			bottom: -100%;
+		}
+		.console-anchor-left .simple-console {
+			left: -100%;
+		}
+		.console-anchor-right .simple-console {
+			right: -100%;
+		}
+		.console-anchor-top.console-open .simple-console {
+			top: 0%;
+		}
+		.console-anchor-bottom.console-open .simple-console {
+			bottom: 0%;
+		}
+		.console-anchor-left.console-open .simple-console {
+			left: 0%;
+		}
+		.console-anchor-right.console-open .simple-console {
+			right: 0%;
+		}
+	</style>
+	<h1>Simple Console</h1>
+	<h2>Tilde Dropdown Console Example</h2>
+	<p>Press the tilde (~) / backtick (`) key to open the console.</p>
+	<div>
+		<label>
+			Open from:
+			<select id="open-from-side">
+				<option value="top" selected>Top</option>
+				<option value="bottom">Bottom</option>
+				<option value="left">Left</option>
+				<option value="right">Right</option>
+			</select>
+		</label>
+	</div>
+	<script src="simple-console.js"></script>
+	<script src="demo.js"></script>
+	<script src="tilde.js"></script>
+</body>

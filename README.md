@@ -95,8 +95,7 @@ body {
 }
 ```
 
-If you want a Quake-style dropdown console, [just ask](https://github.com/1j01/simple-console/issues/7)
-and I'll be happy to cook up an example for you.
+For a Quake-style dropdown console, see the [Tilde Dropdown Console Example](tilde.html).
 
 ### Dark Mode
 
