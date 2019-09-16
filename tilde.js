@@ -38,3 +38,11 @@ const updateSide = (event)=> {
 };
 sideSelect.addEventListener("change", updateSide);
 updateSide();
+
+// Alternatively, don't pass `autofocus: true` to SimpleConsole!
+// but I have the rest of the demo code shared which makes things simpler so whatever
+// I'll just explicitly unfocus it for the tilde example
+var initiallyOpen = container.classList.contains("console-open");
+if (document.activeElement === consoleInput && !initiallyOpen) {
+	consoleInput.blur();
+}
