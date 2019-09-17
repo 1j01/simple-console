@@ -101,21 +101,7 @@ For a Quake-style dropdown console, see the [Tilde Dropdown Console Example](til
 
 The dark styles take effect when the console element or any parent contains the class `dark`.
 
-You could add a theme switcher like so:
-
-```js
-var toggleDarkMode = function() {
-	if (console.element.classList.contains("dark")) {
-		console.element.classList.remove("dark");
-	} else {
-		console.element.classList.add("dark");
-	}
-};
-var button = console.addButton(toggleDarkMode);
-button.textContent = "◐";
-button.setAttribute("title", "Toggle dark theme");
-button.setAttribute("aria-label", "Toggle dark theme");
-```
+There's a built-in theme switcher now so....
 
 ### API
 

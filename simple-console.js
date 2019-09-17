@@ -31,6 +31,13 @@ var SimpleConsole = function(options) {
 		);
 	};
 
+	var add_dark_mode_toggle_icon = function(to_element) {
+		add_svg(to_element, "dark-mode-toggle-icon",
+			'<path style="fill:currentColor" d="M8 0a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8zm0 1v14a7 7 0 0 1-6.06-3.5 7 7 0 0 1 0-7A7 7 0 0 1 8 1z"/>',
+			"0 0 16 16"
+		);
+	};
+
 	var console_element = document.createElement("div");
 	console_element.className = "simple-console";
 
@@ -79,6 +86,7 @@ var SimpleConsole = function(options) {
 		popup_button.setAttribute("aria-haspopup", "true");
 		popup_button.setAttribute("aria-owns", popup.id);
 		popup_button.setAttribute("aria-expanded", "false");
+		// TODO: make this actually generic...
 		popup_button.setAttribute("aria-label", "Command history");
 		popup_button.setAttribute("title", "Command history");
 		add_command_history_icon(popup_button);
@@ -269,6 +277,20 @@ var SimpleConsole = function(options) {
 
 		return items;
 	});
+
+	var toggleDarkMode = function() {
+		if (console_element.classList.contains("dark")) {
+			console_element.classList.remove("dark");
+		} else {
+			console_element.classList.add("dark");
+		}
+		console_element.classList.toggle("light", !console_element.classList.contains("dark"));
+	};
+	toggleDarkMode(); // TODO: better sldfkgjsldfkgj
+	var button = add_button(toggleDarkMode);
+	add_dark_mode_toggle_icon(button);
+	button.setAttribute("title", "Toggle dark theme");
+	button.setAttribute("aria-label", "Toggle dark theme");
 
 	var clear = function() {
 		output.innerHTML = "";
