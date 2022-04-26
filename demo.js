@@ -7,7 +7,7 @@ var con = new SimpleConsole({
 document.body.appendChild(con.element);
 
 con.logHTML(
-	"<h1>Welcome to <a href='https://github.com/1j01/simple-console'>Simple Console!</a></h1>" +
+	"<h1>Welcome to <a href='https://tuxisawesome.github.io/walteros-web'>WalterOS Web!</a></h1>" +
 	"<p>Try entering <code>5 + 5</code> below. Or some faces (ASCII emoticons like <code>:D</code>).</p>" +
 	(location.pathname.match(/tilde|backtick|quake/i) ? "" : "<p>Also check out the <a href='tilde" + (location.hostname.match(/github/) ? "" : ".html") +"'>Quake-style dropdown console example</a>.</p>")
 );
